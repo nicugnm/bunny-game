@@ -2,6 +2,12 @@
                         
 Fiecare o sa faca fork la acest repository si la final dupa ce termina o sa faca un **PULL REQUEST**.
 
+
+Codul trebuie sa fie citet, curat si sa respecte aceeasi structura!
+Nu aveti voie sa modificati structura.
+
+La final, codul va fi analizat de mine, la fiecare pull request in parte. Nu ma uit peste rezolvarile din repository-urile voastre, decat peste pull request. O sa las comentarii la fiecare dintre voi care faceti pull request.
+
 ## Cerinte
 - Rezolvati toate cerintele din Main.java
 - Trebuie sa va treaca toate testele. Rulati `mvn clean test`
