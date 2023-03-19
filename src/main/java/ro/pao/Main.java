@@ -115,6 +115,25 @@ public class Main {
             //FINISH TODO8
             scanner.next();
 
+            //TODO 8-bis:
+            intro = """
+                    Ai putea sa salvezi toate ouale intr-un HashMap?
+                    As vrea sa am in functie de culoare, sa pot sa iau toate ouale in functie de culoare.
+                    Adica: Map<EggColor, List<Egg>>
+                    """;
+            System.out.println(intro);
+            //FINISH TODO8-bis
+            scanner.next();
+
+            //TODO 8-bis-2:
+            intro = """
+                    Vreau ca toate ouale mele sa fie sortate, by default, de catre structura de date folosita.
+                    Oare ce structura de date as putea folosi ca sa le am sortate in mod implicit?
+                    """;
+            System.out.println(intro);
+            //FINISH TODO8-bis-2
+            scanner.next();
+
             //TODO 9:
             intro = """
                     Se pare ca iepurasul vrea ca de paste vrea sa faca cadou din preparate din oua.
