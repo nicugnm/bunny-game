@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GeneralServiceTest {
+public class GeneralServiceTest {
 
     private final GeneralService generalService = new GeneralServiceImpl();
     private final EggService eggService = new EggServiceImpl();
