@@ -1,9 +1,9 @@
-package ro.pao.domain.model;
+package ro.pao.model;
 
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
-import ro.pao.domain.model.abstracts.AbstractEntity;
-import ro.pao.domain.model.enums.EggColor;
+import ro.pao.model.abstracts.AbstractEntity;
+import ro.pao.model.enums.EggColor;
 
 @SuperBuilder
 @Getter

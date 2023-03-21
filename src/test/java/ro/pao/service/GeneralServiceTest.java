@@ -1,8 +1,8 @@
 package ro.pao.service;
 
 import org.junit.jupiter.api.Test;
-import ro.pao.domain.model.Egg;
-import ro.pao.domain.model.enums.EggColor;
+import ro.pao.model.Egg;
+import ro.pao.model.enums.EggColor;
 import ro.pao.service.impl.EggServiceImpl;
 import ro.pao.service.impl.GeneralServiceImpl;
 
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GeneralServiceTest {
+class GeneralServiceTest {
 
     private final GeneralService generalService = new GeneralServiceImpl();
     private final EggService eggService = new EggServiceImpl();

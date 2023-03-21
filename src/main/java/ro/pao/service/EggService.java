@@ -1,7 +1,7 @@
 package ro.pao.service;
 
-import ro.pao.domain.model.enums.EggColor;
-import ro.pao.domain.model.Egg;
+import ro.pao.model.enums.EggColor;
+import ro.pao.model.Egg;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,11 +9,11 @@ import java.util.UUID;
 
 public interface EggService {
 
-    Optional<Egg> getEggById(final UUID id);
+    Optional<Egg> getEggById(UUID id);
 
-    Optional<Egg> getEggByColor(final EggColor color);
+    Optional<Egg> getEggByColor(EggColor color);
 
     List<Egg> getAllEggs();
 
-    void addEggs(final List<Egg> eggs);
+    void addEggs(List<Egg> eggs);
 }

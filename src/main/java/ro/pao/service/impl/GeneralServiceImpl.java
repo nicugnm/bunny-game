@@ -1,7 +1,7 @@
 package ro.pao.service.impl;
 
-import ro.pao.domain.model.Egg;
-import ro.pao.domain.model.enums.EggColor;
+import ro.pao.model.Egg;
+import ro.pao.model.enums.EggColor;
 import ro.pao.service.EggService;
 import ro.pao.service.GeneralService;
 

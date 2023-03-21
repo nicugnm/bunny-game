@@ -1,7 +1,7 @@
 package ro.pao.repository.impl;
 
-import ro.pao.domain.model.enums.EggColor;
-import ro.pao.domain.model.Egg;
+import ro.pao.model.enums.EggColor;
+import ro.pao.model.Egg;
 import ro.pao.repository.EggRepository;
 
 import java.time.Instant;
@@ -21,14 +21,14 @@ public class EggRepositoryImpl implements EggRepository {
     }
 
     @Override
-    public Optional<Egg> getEggById(final UUID id) {
+    public Optional<Egg> getEggById(UUID id) {
         return this.eggs.stream()
                 .filter(egg -> id.equals(egg.getId()))
                 .findFirst();
     }
 
     @Override
-    public Optional<Egg> getEggByColor(final EggColor color) {
+    public Optional<Egg> getEggByColor(EggColor color) {
         return Optional.empty();
     }
 
@@ -38,12 +38,12 @@ public class EggRepositoryImpl implements EggRepository {
     }
 
     @Override
-    public void addEgg(final Egg egg) {
+    public void addEgg(Egg egg) {
         this.eggs.add(egg);
     }
 
     @Override
-    public void addEggs(final List<Egg> eggs) {
+    public void addEggs(List<Egg> eggs) {
         this.eggs.addAll(eggs);
     }
 }

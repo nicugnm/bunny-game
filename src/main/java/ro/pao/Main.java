@@ -1,6 +1,6 @@
 package ro.pao;
 
-import ro.pao.domain.model.Egg;
+import ro.pao.model.Egg;
 import ro.pao.service.EggService;
 import ro.pao.service.GeneralService;
 import ro.pao.service.impl.EggServiceImpl;
@@ -14,7 +14,7 @@ public class Main {
     private static final GeneralService generalService = new GeneralServiceImpl();
     private static final EggService eggService = new EggServiceImpl();
 
-    public static void main(final String[] args) {
+    public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         /** NU MODIFICA IN SUS! **/
 

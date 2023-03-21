@@ -1,4 +1,4 @@
-package ro.pao.domain.model.enums;
+package ro.pao.model.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package ro.pao.domain.model.abstracts;
+package ro.pao.model.abstracts;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;

@@ -2,11 +2,11 @@ package ro.pao.service.impl;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ro.pao.domain.model.enums.EggColor;
-import ro.pao.domain.model.Egg;
+import ro.pao.model.enums.EggColor;
+import ro.pao.model.Egg;
+import ro.pao.service.EggService;
 import ro.pao.repository.EggRepository;
 import ro.pao.repository.impl.EggRepositoryImpl;
-import ro.pao.service.EggService;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,12 +19,12 @@ public class EggServiceImpl implements EggService {
     private final EggRepository eggRepository = new EggRepositoryImpl();
 
     @Override
-    public Optional<Egg> getEggById(final UUID id) {
+    public Optional<Egg> getEggById(UUID id) {
         return eggRepository.getEggById(id);
     }
 
     @Override
-    public Optional<Egg> getEggByColor(final EggColor color) {
+    public Optional<Egg> getEggByColor(EggColor color) {
         return Optional.empty();
     }
 
