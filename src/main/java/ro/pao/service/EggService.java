@@ -16,4 +16,6 @@ public interface EggService {
     List<Egg> getAllEggs();
 
     void addEggs(List<Egg> eggs);
+
+    void addEgg(Egg egg);
 }

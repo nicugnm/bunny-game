@@ -1,17 +1,15 @@
 package ro.pao;
 
+import ro.pao.application.Menu;
 import ro.pao.model.Egg;
 import ro.pao.service.EggService;
-import ro.pao.service.GeneralService;
 import ro.pao.service.impl.EggServiceImpl;
-import ro.pao.service.impl.GeneralServiceImpl;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    private static final GeneralService generalService = new GeneralServiceImpl();
     private static final EggService eggService = new EggServiceImpl();
 
     public static void main(String[] args) {
@@ -29,17 +27,18 @@ public class Main {
                 """;
             System.out.println(intro);
 
-            final List<Egg> eggs = eggService.getAllEggs();
+            Menu menu = Menu.getInstance();
 
             //TODO 1:
-            generalService.addEggsTask1();
+            menu.addEggsTask1();
+            final List<Egg> eggs = eggService.getAllEggs();
             System.out.println("Deocamdata astea sunt ouale pe care le am:");
             eggs.forEach(System.out::println);
             scanner.next();
             //FINISH TODO1
 
             //TODO 2:
-            generalService.colorEggsTask2();
+            menu.colorEggsTask2();
             System.out.println("Deocamdata astea sunt ouale pe care le am:");
             eggs.forEach(System.out::println);
             scanner.next();
@@ -74,7 +73,7 @@ public class Main {
 
 
             //TODO 6:
-            generalService.randomizeEggsTask();
+            menu.randomizeEggsTask();
             intro = """
                     Se pare ca spiridusul cel rau a fost pe aici! Mi-a adaugat prea multe oua de prea multe culori!
                     Ai putea sa imi faci o sumarizare a tuturor oualelor si afisand cate oua am de fiecare tip?

@@ -1,10 +1,10 @@
 package ro.pao.service;
 
 import org.junit.jupiter.api.Test;
+import ro.pao.application.Menu;
 import ro.pao.model.Egg;
 import ro.pao.model.enums.EggColor;
 import ro.pao.service.impl.EggServiceImpl;
-import ro.pao.service.impl.GeneralServiceImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GeneralServiceTest {
 
-    private final GeneralService generalService = new GeneralServiceImpl();
+    private final Menu menu = Menu.getInstance();
     private final EggService eggService = new EggServiceImpl();
 
     record EggsData(List<Egg> redColor, List<Egg> greenAndBrownColor) {
@@ -25,14 +25,14 @@ class GeneralServiceTest {
 
     @Test
     void testAddEggsTask1() {
-        generalService.addEggsTask1();
+        menu.addEggsTask1();
 
         assertEquals(5, eggService.getAllEggs().size());
     }
 
     @Test
     void whenGivenEggColor_thenFindColorIsSet() {
-        generalService.colorEggsTask2();
+        menu.colorEggsTask2();
 
         final EggsData eggsData = eggService.getAllEggs().stream()
                 .collect(Collectors.teeing(

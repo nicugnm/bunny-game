@@ -5,9 +5,8 @@ import lombok.NoArgsConstructor;
 import ro.pao.model.enums.EggColor;
 import ro.pao.model.Egg;
 import ro.pao.service.EggService;
-import ro.pao.repository.EggRepository;
-import ro.pao.repository.impl.EggRepositoryImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,11 +15,11 @@ import java.util.UUID;
 @Getter
 public class EggServiceImpl implements EggService {
 
-    private final EggRepository eggRepository = new EggRepositoryImpl();
+    private static final List<Egg> eggList = new ArrayList<>();
 
     @Override
     public Optional<Egg> getEggById(UUID id) {
-        return eggRepository.getEggById(id);
+        return Optional.empty();
     }
 
     @Override
@@ -30,11 +29,16 @@ public class EggServiceImpl implements EggService {
 
     @Override
     public List<Egg> getAllEggs() {
-        return eggRepository.getAllEggs();
+        return eggList;
     }
 
     @Override
     public void addEggs(List<Egg> eggs) {
-        eggRepository.addEggs(eggs);
+        eggList.addAll(eggs);
+    }
+
+    @Override
+    public void addEgg(Egg egg) {
+        eggList.add(egg);
     }
 }
