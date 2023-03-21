@@ -16,6 +16,5 @@ La final, codul va fi analizat de mine, la fiecare pull request in parte. Nu ma 
 - - in domain se afla clasele definite, fiecare in fisierul ei specific
 - - in service se afla clasele care contin metodele care trebuie implementate
 - - se va lucra cu interfetele, nu cu clasele implementate de interfete.
-- - nu se va lucra cu clasele repository, ci cu clasele service.
-- - fiecare clasa service va apela clasa repository.
+- - fiecare metoda din clasa menu va apela metodele din clasele service
 - - abstractizarea este obligatorie, la fel si incapsularea. fara campuri publice, faceti nivelul de acces cat mai restrictiv! nu folositi mai mare de private decat daca este nevoie!
