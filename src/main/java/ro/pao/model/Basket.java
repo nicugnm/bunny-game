@@ -4,13 +4,13 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import ro.pao.model.abstracts.AbstractEntity;
-import ro.pao.model.enums.EggColor;
-import ro.pao.model.enums.EggType;
+
+import java.util.List;
 
 @SuperBuilder
 @Getter
 @ToString
-public class Egg extends AbstractEntity {
-    private EggColor color;
-    private EggType type;
+public final class Basket extends AbstractEntity {
+    private List<Egg> eggs;
+    private List<Dish> dishes;
 }

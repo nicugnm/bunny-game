@@ -11,7 +11,12 @@ public enum EggColor {
     RED("red"),
     BLACK("black"),
     YELLOW("yellow"),
+    GREEN("green"),
+    BROWN("brown"),
+    WHITE("white"),
+    BLUE("blue"),
     NONE("none");
+
 
     private String type;
 
@@ -21,4 +26,6 @@ public enum EggColor {
                 .findFirst()
                 .orElse(NONE);
     }
+
+
 }

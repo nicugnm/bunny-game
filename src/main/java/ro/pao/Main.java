@@ -88,6 +88,7 @@ public class Main {
                     System.out.println(map);    // {5=2, 6=1}
                     """;
             System.out.println(intro);
+            menu.summarizeEggsTask6();
             //FINISH TODO6
             scanner.next();
 
@@ -98,6 +99,8 @@ public class Main {
                     Dar sa faci un record cu mai multe records ca sa ai cat mai multe date?:)
                     """;
             System.out.println(intro);
+            menu.recordEggsTask7();
+            System.out.println(eggService.getEggsRecord());
             //FINISH TODO7
             scanner.next();
 
@@ -111,6 +114,7 @@ public class Main {
                     System.out.println(map);    // {false=[], true=[lions, tigers, bears]}
                     """;
             System.out.println(intro);
+            menu.partitionEggsTask8_1();
             //FINISH TODO8
             scanner.next();
 
@@ -121,6 +125,7 @@ public class Main {
                     Adica: Map<EggColor, List<Egg>>
                     """;
             System.out.println(intro);
+            menu.partitionEggsTask8_2();
             //FINISH TODO8-bis
             scanner.next();
 
@@ -130,6 +135,7 @@ public class Main {
                     Oare ce structura de date as putea folosi ca sa le am sortate in mod implicit?
                     """;
             System.out.println(intro);
+            menu.partitionEggsTask8_3();
             //FINISH TODO8-bis-2
             scanner.next();
 
@@ -163,6 +169,8 @@ public class Main {
                     Se poate sa implementezi o metoda care afiseaza toti prietenii iepurasului?
                     """;
             System.out.println(intro);
+            menu.addFriendsTask10();
+            menu.showFriendsTask10();
             //FINISH TODO10
             scanner.next();
 

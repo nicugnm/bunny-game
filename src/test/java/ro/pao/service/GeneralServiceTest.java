@@ -36,9 +36,9 @@ class GeneralServiceTest {
 
         final EggsData eggsData = eggService.getAllEggs().stream()
                 .collect(Collectors.teeing(
-                        Collectors.filtering((Egg egg) -> "red".equals(egg.getColor().getType()), Collectors.toList()),
-                        Collectors.filtering((Egg egg) -> "brown".equals(egg.getColor().getType()) ||
-                                "green".equals(egg.getColor().getType()), Collectors.toList()),
+                        Collectors.filtering((Egg egg) -> EggColor.RED.equals(egg.getColor()), Collectors.toList()),
+                        Collectors.filtering((Egg egg) -> EggColor.BROWN.equals(egg.getColor()) ||
+                                EggColor.GREEN.equals(egg.getColor()), Collectors.toList()),
                         EggsData::new
                 ));
 
