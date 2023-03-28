@@ -9,19 +9,13 @@ import ro.pao.service.impl.EggServiceImpl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GeneralServiceTest {
 
     private final Menu menu = Menu.getInstance();
     private final EggService eggService = new EggServiceImpl();
-
-    record EggsData(List<Egg> redColor, List<Egg> greenAndBrownColor) {
-        EggsData {
-            redColor = redColor == null ? List.of() : redColor;
-            greenAndBrownColor = greenAndBrownColor == null ? List.of() : greenAndBrownColor;
-        }
-    }
 
     @Test
     void testAddEggsTask1() {
@@ -42,18 +36,25 @@ class GeneralServiceTest {
                         EggsData::new
                 ));
 
-       assertTrue(eggsData.redColor.size() == 3);
-       assertEquals(eggsData.greenAndBrownColor.stream()
-               .filter(egg -> "green".equals(egg.getColor().getType()))
-               .toList()
-               .size(), eggsData.greenAndBrownColor.stream()
-               .filter(egg -> "brown".equals(egg.getColor().getType()))
-               .toList()
-               .size());
+        assertTrue(eggsData.redColor.size() == 3);
+        assertEquals(eggsData.greenAndBrownColor.stream()
+                .filter(egg -> "green".equals(egg.getColor().getType()))
+                .toList()
+                .size(), eggsData.greenAndBrownColor.stream()
+                .filter(egg -> "brown".equals(egg.getColor().getType()))
+                .toList()
+                .size());
     }
 
     @Test
     void whenGivenEggColor_thenCheckAllColors() {
         assertEquals(8, EggColor.values().length);
+    }
+
+    record EggsData(List<Egg> redColor, List<Egg> greenAndBrownColor) {
+        EggsData {
+            redColor = redColor == null ? List.of() : redColor;
+            greenAndBrownColor = greenAndBrownColor == null ? List.of() : greenAndBrownColor;
+        }
     }
 }

@@ -2,15 +2,14 @@ package ro.pao.service.impl;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ro.pao.model.enums.EggColor;
 import ro.pao.model.Egg;
+import ro.pao.model.enums.EggColor;
 import ro.pao.service.EggService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter

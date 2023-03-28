@@ -2,15 +2,14 @@ package ro.pao.service.impl;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ro.pao.model.enums.DishType;
 import ro.pao.model.Dish;
+import ro.pao.model.enums.DishType;
 import ro.pao.service.DishService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -40,7 +39,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public List<Dish> getAllDishes() {
-        return null;
+        return dishList;
     }
 
     @Override

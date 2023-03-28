@@ -1,17 +1,17 @@
 package ro.pao.application;
 
-import ro.pao.model.Egg;
-import ro.pao.model.Dish;
-import ro.pao.model.Friend;
+import ro.pao.model.*;
+import ro.pao.model.enums.DishType;
 import ro.pao.model.enums.EggColor;
 import ro.pao.model.enums.EggType;
-import ro.pao.model.enums.DishType;
-import ro.pao.service.EggService;
-import ro.pao.service.impl.EggServiceImpl;
 import ro.pao.service.DishService;
-import ro.pao.service.impl.DishServiceImpl;
+import ro.pao.service.EggService;
 import ro.pao.service.FriendService;
+import ro.pao.service.GiftService;
+import ro.pao.service.impl.DishServiceImpl;
+import ro.pao.service.impl.EggServiceImpl;
 import ro.pao.service.impl.FriendServiceImpl;
+import ro.pao.service.impl.GiftServiceImpl;
 
 import java.time.Instant;
 import java.util.*;
@@ -19,11 +19,12 @@ import java.util.stream.Collectors;
 
 public class Menu {
 
+    private static Menu INSTANCE;
     private final Random random = new Random();
     private final EggService eggService = new EggServiceImpl();
     private final FriendService friendService = new FriendServiceImpl();
-
-    private static Menu INSTANCE;
+    private final GiftService giftService = new GiftServiceImpl();
+    private final DishService dishService = new DishServiceImpl();
 
     public static Menu getInstance() {
         return (INSTANCE == null ? new Menu() : INSTANCE);
@@ -142,8 +143,8 @@ public class Menu {
 
     public void summarizeEggsTask6() {
         Map<EggColor, Long> colorGroups = this.eggService.getAllEggs()
-                                                    .stream()
-                                                    .collect(Collectors.groupingBy(Egg::getColor, Collectors.counting()));
+                .stream()
+                .collect(Collectors.groupingBy(Egg::getColor, Collectors.counting()));
         System.out.println(colorGroups);
     }
 
@@ -218,6 +219,13 @@ public class Menu {
         this.friendService.addFriends(List.of(
                 Friend.builder()
                         .id(UUID.randomUUID())
+                        .name("Iepuras")
+                        .surname("Bunny")
+                        .email("email")
+                        .phone("phone")
+                        .build(),
+                Friend.builder()
+                        .id(UUID.randomUUID())
                         .name("Ion")
                         .surname("Maria")
                         .email("email")
@@ -258,8 +266,162 @@ public class Menu {
         ));
     }
 
-    public void showFriendsTask10() {
-        List<Friend> friends = this.friendService.getAllFriends();
-        friends.forEach(System.out::println);
+    public void addDishesTask10() {
+        this.dishService.addDishes(List.of(
+                Dish.builder()
+                        .id(UUID.randomUUID())
+                        .name("Placinta")
+                        .type(DishType.PIE)
+                        .build(),
+                Dish.builder()
+                        .id(UUID.randomUUID())
+                        .name("Tiramisu")
+                        .type(DishType.CAKE)
+                        .build(),
+                Dish.builder()
+                        .id(UUID.randomUUID())
+                        .name("Omleta cu branza")
+                        .type(DishType.OMELETTE)
+                        .build()
+        ));
+    }
+
+    private Boolean checkBunny() {
+        Optional<Friend> bunny = friendService.getFriendBySurname("Bunny");
+        if (bunny.isEmpty()) {
+            System.out.println("Bunny nu este in lista de prieteni");
+            return false;
+        }
+        return true;
+    }
+
+    public void addGiftsTask11() {
+        if (!checkBunny()) {
+            return;
+        }
+        Optional<Friend> bunny = friendService.getFriendBySurname("Bunny");
+        List<Friend> friends = friendService.getAllFriends()
+                .stream().
+                filter(friend -> !friend.getSurname().equals("Bunny")).
+                collect(Collectors.toList());
+        List<Egg> eggs = eggService.getAllEggs().stream().filter(egg -> egg.getColor().equals(EggColor.RED)).collect(Collectors.toList());
+        List<Dish> dishes = dishService.getAllDishes();
+        this.giftService.addGifts(List.of(
+                GiftBasket.builder()
+                        .id(UUID.randomUUID())
+                        .sender(bunny.get())
+                        .receiver(friends.get(0))
+                        .isSent(false)
+                        .eggs(eggs)
+                        .dishes(dishes)
+                        .build(),
+                GiftBasket.builder()
+                        .id(UUID.randomUUID())
+                        .sender(bunny.get())
+                        .receiver(friends.get(1))
+                        .isSent(false)
+                        .eggs(eggs)
+                        .dishes(dishes)
+                        .build(),
+                GiftBasket.builder()
+                        .id(UUID.randomUUID())
+                        .sender(bunny.get())
+                        .receiver(friends.get(2))
+                        .isSent(false)
+                        .eggs(eggs)
+                        .dishes(dishes)
+                        .build(),
+                GiftBasket.builder()
+                        .id(UUID.randomUUID())
+                        .sender(bunny.get())
+                        .receiver(friends.get(3))
+                        .isSent(false)
+                        .eggs(eggs)
+                        .dishes(dishes)
+                        .build()
+        ));
+    }
+
+    public void addGiftsTask12() {
+        if (!checkBunny()) {
+            return;
+        }
+        Optional<Friend> bunny = friendService.getFriendBySurname("Bunny");
+        List<Friend> friends = friendService.getAllFriends()
+                .stream().
+                filter(friend -> !friend.getSurname().equals("Bunny")).
+                collect(Collectors.toList());
+        //adaug cadourile de la prieteni pentru bunny(felicitari)
+        this.giftService.addGifts(List.of(
+                GiftCard.builder()
+                        .id(UUID.randomUUID())
+                        .sender(friends.get(0))
+                        .receiver(bunny.get())
+                        .isSent(false)
+                        .message("Paste fericit!")
+                        .build(),
+                GiftCard.builder()
+                        .id(UUID.randomUUID())
+                        .sender(friends.get(1))
+                        .receiver(bunny.get())
+                        .isSent(false)
+                        .message("Paste fericit!")
+                        .build(),
+                GiftCard.builder()
+                        .id(UUID.randomUUID())
+                        .sender(friends.get(2))
+                        .receiver(bunny.get())
+                        .isSent(false)
+                        .message("Paste fericit!")
+                        .build()
+        ));
+        //adaug cadouri de la bunny pentru prieteni (oua pe care sunt scrise mesaje)
+        this.giftService.addGifts(List.of(
+                GiftFriend.builder()
+                        .id(UUID.randomUUID())
+                        .sender(bunny.get())
+                        .receiver(friends.get(0))
+                        .isSent(false)
+                        .egg(Egg.builder()
+                                .id(UUID.randomUUID())
+                                .color(EggColor.RED)
+                                .type(EggType.UNKNOWN)
+                                .build())
+                        .message("Paste fericit!")
+                        .build(),
+                GiftFriend.builder()
+                        .id(UUID.randomUUID())
+                        .sender(bunny.get())
+                        .receiver(friends.get(1))
+                        .isSent(false)
+                        .egg(Egg.builder()
+                                .id(UUID.randomUUID())
+                                .color(EggColor.RED)
+                                .type(EggType.UNKNOWN)
+                                .build())
+                        .message("Paste fericit!")
+                        .build(),
+                GiftFriend.builder()
+                        .id(UUID.randomUUID())
+                        .sender(bunny.get())
+                        .receiver(friends.get(2))
+                        .isSent(false)
+                        .egg(Egg.builder()
+                                .id(UUID.randomUUID())
+                                .color(EggColor.RED)
+                                .type(EggType.UNKNOWN)
+                                .build())
+                        .message("Paste fericit!")
+                        .build()
+
+        ));
+    }
+
+    public void sendGiftsTask11() {
+        giftService.sendGiftBaskets();
+    }
+
+    public void sendGiftsTask12() {
+        giftService.exchangeGifts();
     }
 }

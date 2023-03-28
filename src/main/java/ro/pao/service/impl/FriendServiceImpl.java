@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -20,6 +19,13 @@ public class FriendServiceImpl implements FriendService {
     @Override
     public Optional<Friend> getFriendById(UUID id) {
         return Optional.empty();
+    }
+
+    @Override
+    public Optional<Friend> getFriendBySurname(String surname) {
+        return friendList.stream()
+                .filter(friend -> friend.getSurname().equals(surname))
+                .findFirst();
     }
 
     @Override

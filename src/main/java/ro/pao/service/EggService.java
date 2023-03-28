@@ -1,8 +1,7 @@
 package ro.pao.service;
 
-import ro.pao.model.enums.EggColor;
-import ro.pao.model.enums.EggType;
 import ro.pao.model.Egg;
+import ro.pao.model.enums.EggColor;
 
 import java.util.ArrayList;
 import java.util.List;
