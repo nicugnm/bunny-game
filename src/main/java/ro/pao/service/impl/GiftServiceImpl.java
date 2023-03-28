@@ -1,7 +1,10 @@
 package ro.pao.service.impl;
 
 import lombok.NoArgsConstructor;
-import ro.pao.model.*;
+import ro.pao.model.GiftBasket;
+import ro.pao.model.GiftCard;
+import ro.pao.model.GiftFriend;
+import ro.pao.model.abstracts.Gift;
 import ro.pao.service.GiftService;
 
 import java.util.ArrayList;
@@ -11,11 +14,12 @@ import java.util.function.UnaryOperator;
 
 @NoArgsConstructor
 public class GiftServiceImpl implements GiftService {
-    private static final List<Gift> giftList= new ArrayList<>();
+    private static final List<Gift> giftList = new ArrayList<>();
 
     public void addGift(Gift gift) {
         giftList.add(gift);
     }
+
     public void addGifts(List<Gift> gifts) {
         giftList.addAll(gifts);
     }
@@ -38,8 +42,14 @@ public class GiftServiceImpl implements GiftService {
     }
 
     public void exchangeGifts() {
-        List<GiftCard> giftCards = giftList.stream().filter(gift -> gift instanceof GiftCard).map(gift -> (GiftCard) gift).toList();
-        List<GiftFriend> giftFriends = giftList.stream().filter(gift -> gift instanceof GiftFriend).map(gift -> (GiftFriend) gift).toList();
+        List<GiftCard> giftCards = giftList.stream()
+                .filter(gift -> gift instanceof GiftCard)
+                .map(gift -> (GiftCard) gift)
+                .toList();
+        List<GiftFriend> giftFriends = giftList.stream()
+                .filter(gift -> gift instanceof GiftFriend)
+                .map(gift -> (GiftFriend) gift)
+                .toList();
 
         UnaryOperator<GiftCard> sendUnary = giftCard -> {
             giftCard.setIsSent(true);
@@ -47,11 +57,15 @@ public class GiftServiceImpl implements GiftService {
         };
 
         UnaryOperator<GiftCard> respondUnary = giftCard -> {
-            giftFriends.stream().filter(gift -> gift.getReceiver().equals(giftCard.getSender())).findFirst().get().setIsSent(true);
+            giftFriends.stream()
+                    .filter(gift -> gift.getReceiver().equals(giftCard.getSender()))
+                    .findFirst()
+                    .get()
+                    .setIsSent(true);
             return giftCard;
         };
 
-        Function<GiftCard, GiftCard> exchange= sendUnary.andThen(respondUnary);
+        Function<GiftCard, GiftCard> exchange = sendUnary.andThen(respondUnary);
 
         giftCards.forEach(exchange::apply);
     }

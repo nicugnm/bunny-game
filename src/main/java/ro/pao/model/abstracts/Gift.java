@@ -1,10 +1,10 @@
-package ro.pao.model;
+package ro.pao.model.abstracts;
 
-import ro.pao.model.abstracts.AbstractEntity;
-import lombok.ToString;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import ro.pao.model.Friend;
 
 @SuperBuilder
 @ToString

@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import ro.pao.model.abstracts.AbstractEntity;
-import java.util.List;
 
 @SuperBuilder
 @Getter
