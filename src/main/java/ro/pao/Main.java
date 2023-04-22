@@ -2,8 +2,14 @@ package ro.pao;
 
 import ro.pao.application.Menu;
 import ro.pao.model.Egg;
+import ro.pao.service.DishService;
 import ro.pao.service.EggService;
+import ro.pao.service.FriendService;
+import ro.pao.service.GiftService;
+import ro.pao.service.impl.DishServiceImpl;
 import ro.pao.service.impl.EggServiceImpl;
+import ro.pao.service.impl.FriendServiceImpl;
+import ro.pao.service.impl.GiftServiceImpl;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +17,8 @@ import java.util.Scanner;
 public class Main {
 
     private static final EggService eggService = new EggServiceImpl();
+    private static final FriendService friendService = new FriendServiceImpl();
+    private static final DishService dishService = new DishServiceImpl();
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
@@ -18,13 +26,13 @@ public class Main {
 
         while (true) {
             String intro = """
-                Eu sunt iepurasul bunny si am nevoie de ajutorul tau.
-                Daca vrei sa ma ajuti, trebuie sa stii cateva lucruri.
-                
-                Fiindca urmeaza perioada de paste, am nevoie de niste oua pe care trebuie sa le colorez.
-                In momentul de fata, am nevoie de niste oua albe, dar nu stiu daca am suficiente. As avea nevoie de 5 oua. Ai putea sa ma ajuti te rog?
-                S-ar putea sa-ti fie de ajutor faptul ca in repository exista deja metoda addEgg() :)
-                """;
+                    Eu sunt iepurasul bunny si am nevoie de ajutorul tau.
+                    Daca vrei sa ma ajuti, trebuie sa stii cateva lucruri.
+                                    
+                    Fiindca urmeaza perioada de paste, am nevoie de niste oua pe care trebuie sa le colorez.
+                    In momentul de fata, am nevoie de niste oua albe, dar nu stiu daca am suficiente. As avea nevoie de 5 oua. Ai putea sa ma ajuti te rog?
+                    S-ar putea sa-ti fie de ajutor faptul ca in repository exista deja metoda addEgg() :)
+                    """;
             System.out.println(intro);
 
             Menu menu = Menu.getInstance();
@@ -50,6 +58,7 @@ public class Main {
                     Se poate sa faci ca toate campurile oualelor pe care le-ai adaugat sa nu fie nule?
                     """;
             System.out.println(intro);
+            eggs.forEach(System.out::println);
             scanner.next();
             //FINISH TODO3
 
@@ -78,7 +87,7 @@ public class Main {
                     Se pare ca spiridusul cel rau a fost pe aici! Mi-a adaugat prea multe oua de prea multe culori!
                     Ai putea sa imi faci o sumarizare a tuturor oualelor si afisand cate oua am de fiecare tip?
                     Bonus: Se poate sa faci asta cu un singur stream?
-                    
+                                        
                     Exemplu:
                     var ohMy = Stream.of("lions", "tigers", "bears");
                     Map<Integer, Long> map = ohMy.collect(
@@ -88,6 +97,7 @@ public class Main {
                     System.out.println(map);    // {5=2, 6=1}
                     """;
             System.out.println(intro);
+            menu.summarizeEggsTask6();
             //FINISH TODO6
             scanner.next();
 
@@ -98,6 +108,8 @@ public class Main {
                     Dar sa faci un record cu mai multe records ca sa ai cat mai multe date?:)
                     """;
             System.out.println(intro);
+            menu.recordEggsTask7();
+            System.out.println(eggService.getEggsRecord());
             //FINISH TODO7
             scanner.next();
 
@@ -111,6 +123,7 @@ public class Main {
                     System.out.println(map);    // {false=[], true=[lions, tigers, bears]}
                     """;
             System.out.println(intro);
+            menu.partitionEggsTask8_1();
             //FINISH TODO8
             scanner.next();
 
@@ -121,6 +134,7 @@ public class Main {
                     Adica: Map<EggColor, List<Egg>>
                     """;
             System.out.println(intro);
+            menu.partitionEggsTask8_2();
             //FINISH TODO8-bis
             scanner.next();
 
@@ -130,6 +144,7 @@ public class Main {
                     Oare ce structura de date as putea folosi ca sa le am sortate in mod implicit?
                     """;
             System.out.println(intro);
+            menu.partitionEggsTask8_3();
             //FINISH TODO8-bis-2
             scanner.next();
 
@@ -151,6 +166,8 @@ public class Main {
                     Tiramisu, tort de ciocolata, tort de fructe, brownie si gogosile ar fi niste prajituri care i-ar placea sa le imparta!
                     """;
             System.out.println(intro);
+            menu.addDishesTask10();
+            System.out.println(dishService.getAllDishes());
             //FINISH TODO10
             scanner.next();
 
@@ -163,40 +180,46 @@ public class Main {
                     Se poate sa implementezi o metoda care afiseaza toti prietenii iepurasului?
                     """;
             System.out.println(intro);
+            menu.addFriendsTask10();
+            System.out.println(friendService.getAllFriends());
             //FINISH TODO10
             scanner.next();
 
             //TODO 11:
             intro = """
-                   Pentru a livra toate aceste bucate are nevoie de un cos. Ai putea sa implementezi un cos?
-                   Cosul poate sa contina si prajituri si oua.
-                   Cel mai important este ca iepurasul doreste sa spuna ca nimeni din prietenii lui nu vrea sa afle ce are fiecare in cos!
-                   Asa ca incearca sa faci cosul o clasa imutabila :)
-                    """;
+                    Pentru a livra toate aceste bucate are nevoie de un cos. Ai putea sa implementezi un cos?
+                    Cosul poate sa contina si prajituri si oua.
+                    Cel mai important este ca iepurasul doreste sa spuna ca nimeni din prietenii lui nu vrea sa afle ce are fiecare in cos!
+                    Asa ca incearca sa faci cosul o clasa imutabila :)
+                     """;
             System.out.println(intro);
+            menu.addGiftsTask11();
+            menu.sendGiftsTask11();
             //FINISH TODO11
             scanner.next();
 
             //TODO 12:
             intro = """
-                   Fiecare din prietenii iepurasului sunt foarte fericiti pentru cadoul primit.
-                   Si pentru acest lucru, ei doresc sa-i faca un serviciu, si anume doresc sa-i faca si la randul lui un cadou.
-                   Cadoul iepurasului la fel, nu trebuie accesat de iepuras si trebuie sa faci cadoul iepurasului o clasa imutabila.
-                   Cadoul poate sa fie ceva de paste, nu neaparat oua sau prajituri. Ce ai putea sa-i faci cadou unui iepuras?
-                   Iepurasul o sa le multumeasca cu ceva in schimb, asa ca gandeste-te sa implementezi si o alta clasa ca fiind CadouPrieteni.
-                   Lasa-te inspirat si implementeaza cadoul perfect, folosind UnaryOperator<Object> sau Function<Object, Object>!
-                   Prima functie lambda o sa paseze obiectul dat iepurasului si a doua lambda function o sa cadoul dat prietenilor!
-                   Incearca sa faci niste operatii pe obiecte si sa le folosesti in lambda function.
-                    """;
+                    Fiecare din prietenii iepurasului sunt foarte fericiti pentru cadoul primit.
+                    Si pentru acest lucru, ei doresc sa-i faca un serviciu, si anume doresc sa-i faca si la randul lui un cadou.
+                    Cadoul iepurasului la fel, nu trebuie accesat de iepuras si trebuie sa faci cadoul iepurasului o clasa imutabila.
+                    Cadoul poate sa fie ceva de paste, nu neaparat oua sau prajituri. Ce ai putea sa-i faci cadou unui iepuras?
+                    Iepurasul o sa le multumeasca cu ceva in schimb, asa ca gandeste-te sa implementezi si o alta clasa ca fiind CadouPrieteni.
+                    Lasa-te inspirat si implementeaza cadoul perfect, folosind UnaryOperator<Object> sau Function<Object, Object>!
+                    Prima functie lambda o sa paseze obiectul dat iepurasului si a doua lambda function o sa cadoul dat prietenilor!
+                    Incearca sa faci niste operatii pe obiecte si sa le folosesti in lambda function.
+                     """;
             System.out.println(intro);
+            menu.addGiftsTask12();
+            menu.sendGiftsTask12();
             //FINISH TODO12
             scanner.next();
 
             //TODO 13:
             intro = """
-                   Toata lumea este fericita ca a ajuns la capat si de aceea, trebuie ca aplicatia noastra sa fie una completa.
-                   Implementeaza teste pentru toate clasele implementate!
-                    """;
+                    Toata lumea este fericita ca a ajuns la capat si de aceea, trebuie ca aplicatia noastra sa fie una completa.
+                    Implementeaza teste pentru toate clasele implementate!
+                     """;
             System.out.println(intro);
             //FINISH TODO13
             scanner.next();
