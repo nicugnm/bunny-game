@@ -8,7 +8,7 @@ public interface GiftService {
 
     void addGift(Gift gift);
 
-    public void addGifts(List<Gift> gifts);
+    void addGifts(List<Gift> gifts);
 
     void removeGift(Gift gift);
 

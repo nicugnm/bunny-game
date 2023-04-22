@@ -18,7 +18,6 @@ public class Main {
 
     private static final EggService eggService = new EggServiceImpl();
     private static final FriendService friendService = new FriendServiceImpl();
-    private static final GiftService giftService = new GiftServiceImpl();
     private static final DishService dishService = new DishServiceImpl();
 
     public static void main(String[] args) {
